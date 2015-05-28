@@ -38,7 +38,7 @@ export default Ember.Mixin.create(ControlSupport,{
 	
 	caption : Ember.computed.alias('_option.caption'),
 		
-	optionControl : Ember.computed('_option.control',function() {
+	optionControl : Ember.computed('_option.control', { get : function() {
 		// @TODO: should probably destroy existing control
 		if(this._option.control) {
 			var options=this._option.control._meta.options;
@@ -47,7 +47,7 @@ export default Ember.Mixin.create(ControlSupport,{
 		}
 			
 		return null;
-	}),
+	}}),
 	
 	index : Ember.computed.alias('_option.index'),
 	

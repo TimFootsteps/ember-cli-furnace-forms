@@ -56,20 +56,21 @@ export default Control.extend(ControlSupport,{
 		},
 	},
 	
-	_modelName : Ember.computed('for',function(key,value) {
-		if(value)  {
-			return value;
-		}	
-		if(this.get('for')===this.get('_panel.for')) {
-			return this.get('_panel._modelName');
-		}
-		else if(this.get('for')) {
-			return getName(this.get('for'));
-		}
-		else {
-			return null;
-		}
-	}),
+	_modelName : Ember.computed('for',{
+			set: function(key,value) {
+				return value;
+			},
+			
+			get: function(key) {
+				if(this.get('for')===this.get('_panel.for')) {
+					return this.get('_panel._modelName');
+				}
+				else if(this.get('for')) {
+					return getName(this.get('for'));
+				}
+				return null;
+			}
+		}),
 	
 	_targetName : function() {
 		if(this.get('targetObject')) {

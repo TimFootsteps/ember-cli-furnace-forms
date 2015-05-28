@@ -20,7 +20,7 @@ export default Ember.Mixin.create({
 	
 	_controlsLoaded: false,
 	
-	controls: Ember.computed('_options',function() {
+	controls: Ember.computed('_options',{get : function() {
 		var ret = Ember.A();
 		var self = this;
 		this._controlsLoaded=true;
@@ -29,7 +29,7 @@ export default Ember.Mixin.create({
 																	_option:option}));
 		});
 		return ret;
-	}).readOnly(),
+	}}).readOnly(),
 	
 	init : function() {
 		this._super();

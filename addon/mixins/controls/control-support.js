@@ -11,7 +11,7 @@ export default Ember.Mixin.create({
 		this._controls={};
 	},
 	
-	controls: Ember.computed(function() {
+	controls: Ember.computed({get :function() {
 		var ret = Ember.A();
 		var self = this;
 		this.constructor.eachComputedProperty(function(name, meta) {
@@ -20,9 +20,9 @@ export default Ember.Mixin.create({
 			}
 		});
 		return ret;
-	}).readOnly(),
+	}}).readOnly(),
 	
-	inputControls: Ember.computed(function() {
+	inputControls: Ember.computed({get: function() {
 		var ret = Ember.A();
 		var self = this;
 		this.constructor.eachComputedProperty(function(name, meta) {
@@ -31,9 +31,9 @@ export default Ember.Mixin.create({
 			}
 		});
 		return ret;
-	}).readOnly(),
+	}}).readOnly(),
 	
-	actionControls: Ember.computed(function() {
+	actionControls: Ember.computed({get : function() {
 		var ret = Ember.A();
 		var self = this;
 		this.constructor.eachComputedProperty(function(name, meta) {
@@ -42,7 +42,7 @@ export default Ember.Mixin.create({
 			}
 		});
 		return ret;
-	}).readOnly(),
+	}}).readOnly(),
 	
 //	_dirty : false,
 //	

@@ -8,7 +8,7 @@ export default Ember.Mixin.create({
 		this._super();
 		if(typeof this._conditionFn==='function') {
 			this.reopen({
-				_condition:Ember.computed(this._conditionProps+',_form.for',this._conditionFn)
+				_condition:Ember.computed(this._conditionProps+',_form.for',{get : this._conditionFn })
 			});
 			// Initialize the condition so observers get notified and our condition will observe its condition properties
 			this.get('_condition');
@@ -17,9 +17,9 @@ export default Ember.Mixin.create({
 	
 	hasPrerequisites : Ember.computed.alias('_condition'),
 
-	conditionProperties: Ember.computed('_conditionProps',function() {
+	conditionProperties: Ember.computed('_conditionProps',{get :function() {
 		if(!this._conditionProps)
 			return null;
 		return this._conditionProps.split(',');
-	}).readOnly(),
+	}}).readOnly(),
 });

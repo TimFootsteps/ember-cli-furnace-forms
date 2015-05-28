@@ -72,11 +72,15 @@ export default Ember.Mixin.create({
 		return this.get('_options')[index];			
 	},
 	
-	selectedOption : Ember.computed(function(key,value) {
-		if(value) {
-			this.set('value',value.get('value'));
-		}
-		return this.getOption();
+	selectedOption : Ember.computed({get : function() {
+				return this.getOption();
+			},
+			set : function(key,value) {
+				if(value) {
+					this.set('value',value.get('value'));
+				}
+				return this.getOption();
+			} 
 	}),
 	
 	selectedIndex : 0,

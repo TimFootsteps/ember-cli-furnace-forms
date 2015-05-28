@@ -44,14 +44,17 @@ export default Panel.extend({
 		this._super();
 	},
 	
-	'for' : Ember.computed(function(key,value) {
-		if(!this.control) {
-			return value;
+	'for' : Ember.computed({
+		
+		get : function() {
+			if(!this.control) {
+				return null;
+			}
+			if(value) {			
+				this.control.set('for',value);
+			}
+			return this.control.get('for');
 		}
-		if(value) {			
-			this.control.set('for',value);
-		}
-		return this.control.get('for');
 	}),
 	
 	type : Ember.computed(function() {
